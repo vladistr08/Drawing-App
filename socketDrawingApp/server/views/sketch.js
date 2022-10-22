@@ -1,5 +1,5 @@
 let socket;
-
+//dev
 function generateCanvas(){
     createCanvas(2125, 800);
     background(23, 32, 31);

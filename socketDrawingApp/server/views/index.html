@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Drawing with friends!</title>
+  <script src="https://cdn.socket.io/4.5.3/socket.io.min.js" integrity="sha384-WPFUvHkB1aHA5TDSZi6xtDgkF0wXJcIIxXhC6h8OT8EH3fC5PWro5pWJ1THjcfEi" crossorigin="anonymous"></script>
+  <script src="lib/p5.js"></script>
+  <!-- <script src="../addons/p5.sound.js"></script> -->
+  <script src="sketch.js"></script>
+  <link rel="stylesheet" href="css/index.css">
+</head>
+
+<body>
+  <h1>Drawing with friends!</h1>
+  <main>
+  </main>
+  <div class="input">
+    <label for="userColor">Pick your color:</label>
+    <input type="color" id="userColor" name="userColor"
+           value="#e66465">
+
+    <label for="userPenSizeX"> & Pen Size:</label>
+    <input type="number" id="userPenSizeX" name="userPenSizeX"
+           value="30" size="1" class="userPen">
+    <input type="number" id="userPenSizeY" name="userPenSizeY"
+           value="30" size="1" class="userPen">
+  </div>
+  <div class="input">
+    <button onclick="clearLocalCanvas()" class="clear-local">Clear Local</button>
+    <button onclick="clearGlobalCanvas()" class ="clear-global">Clear Global</button>
+  </div>
+
+</body>
+
+</html>

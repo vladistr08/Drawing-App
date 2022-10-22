@@ -1,0 +1,47 @@
+body{
+    background-color: darkslategray;
+}
+
+h1 {
+    text-align: center;
+    color: lemonchiffon;
+    margin: 1em;
+}
+
+label{
+    display: inline;
+    font-size: 26px;
+    padding: 5px;
+    color: lemonchiffon;
+
+}
+
+.input {
+    display: flex;
+    justify-content: center;
+    padding: 2em;
+}
+
+.clear-local{
+    margin-top: 0.1em;
+    margin-left: 1em;
+    margin-right: 1em;
+    background-color: #17201f;
+    color: lemonchiffon;
+    padding: 2em;
+}
+
+.clear-global{
+    margin-top: 0.1em;
+    background-color: #17201f;
+    color: lemonchiffon;
+    padding: 2em;
+
+}
+
+.userPen{
+    margin: 0.3em;
+
+}
+
+

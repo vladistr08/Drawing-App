@@ -1,5 +1,7 @@
 let socket;
-//dev
+const paths = [];
+let currentPath = [];
+
 function generateCanvas(){
     createCanvas(2125, 800);
     background(23, 32, 31);
@@ -21,44 +23,60 @@ function generateDefaultValuesDOM() {
     document.getElementById('userColor').value = "#e66465"
 }
 
-function setup() {
-    generateCanvas();
-
-    generateDefaultValuesDOM()
-
+function socketHandler(){
     socket = io.connect('http://localhost:3000');
 
-    socket.on('mouse', ({x, y, xSize, ySize, color}) => {
-        noStroke();
-        fill(color);
-        ellipse(x, y, xSize, ySize);
+    socket.on('mouse', (path) => {
+        beginShape();
+        for(const point of path){
+            stroke(point.color);
+            strokeWeight(point.xSize - point.ySize + 4);
+            vertex(point.x, point.y);
+        }
+        endShape();
     })
 
     socket.on('clear', () =>{
-            clearLocalCanvas();
+        clearLocalCanvas();
     });
 }
 
-function mouseDragged() {
-    const userColor = document.getElementById('userColor').value;
-    const xSize = document.getElementById('userPenSizeX').value;
-    const ySize = document.getElementById('userPenSizeY').value;
+function setup() {
+    generateCanvas();
+    generateDefaultValuesDOM();
+    socketHandler();
+}
 
-    const data = {
-        x: mouseX,
-        y: mouseY,
-        xSize: xSize,
-        ySize: ySize,
-        color: userColor
-    };
-
-    socket.emit('mouse', data);
-
-    noStroke();
-    fill(userColor)
-    ellipse(mouseX, mouseY, xSize, ySize)
+function mousePressed() {
+    currentPath = [];
+    paths.push(currentPath)
 }
 
 function draw() {
+    noFill()
+    if(mouseIsPressed){
+        const userColor = document.getElementById('userColor').value;
+        const xSize = document.getElementById('userPenSizeX').value;
+        const ySize = document.getElementById('userPenSizeY').value;
+
+        const elipsePoint = {
+            x: mouseX,
+            y: mouseY,
+            xSize: xSize,
+            ySize: ySize,
+            color: userColor
+        }
+        currentPath.push(elipsePoint);
+        socket.emit('mouse', currentPath)
+    }
+    for(const path of paths){
+        beginShape();
+        for(const point of path){
+            stroke(point.color);
+            strokeWeight(point.xSize - point.ySize + 4);
+            vertex(point.x, point.y);
+        }
+        endShape();
+    }
 }
 

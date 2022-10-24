@@ -16,3 +16,4 @@
 ####*`More styling options` (drawing)
 ####*`Smoother drawings`
 ####*`Accounts and db` (it will be optional)
+####*`Chat room + security`
